@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 import logging, cx_Oracle, threading, time
 
@@ -90,7 +90,7 @@ if __name__ == "__main__":
 
     t_log('A DEBUG MESSAGE')
     username = 'bipul'
-    password = 'bipul'
+    password = getpass.getpass('password: ')
     database = 'DEMODB01_LOCAL'
     test_duration = 1
 
@@ -105,9 +105,6 @@ if __name__ == "__main__":
         threads.append(t)
         t.start()
     t.join()
-
-    #w1 = Writerproc('bipul','bipul','DEMODB01_LOCAL')
-    #w1.execproc()
 
     obj2 = Statsretreiver(username,password,database)
     print obj2.getStats()
