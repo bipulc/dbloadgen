@@ -66,13 +66,13 @@ t/oracle/dbloadgen/bin/dbloadgen.py -d <DB Service name>  -i <ip address of DB s
 ```
 Additionally, a dockerfile in the repo can be used to build the image. To build an image from dockerfile, download the following files in same directory as dockerfile.
 
-Oracle Instant Client zip files  for instantclient_12_1 from OTN.
+Oracle Instant Client zip files  for instantclient_12_1 from [OTN](http://www.oracle.com/technetwork/index.html).
 
 - instantclient-basic-linux.x64-12.1.0.2.0.zip
 - instantclient-sdk-linux.x64-12.1.0.2.0.zip
 - instantclient-sqlplus-linux.x64-12.1.0.2.0.zip
 
-Additionally download epel-release-latest-7.noarch.rpm from Fedora EPEL project
+Additionally download epel-release-latest-7.noarch.rpm from [Fedora EPEL project](https://dl.fedoraproject.org/pub/epel/)
 and entrypoint.sh from this repo.
 
 and run the following command in the directory. 
