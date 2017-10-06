@@ -1,32 +1,32 @@
 # dbloadgen
 
-It is a very light weight command line based load generator tool for Oracle database. Developed and tested using Oracle 12.1.0.2 multitenant architecture. However, it should work with previous version of databases as none of the 12c specific features are used in the script.
+It is a very light weight command line based load generator tool for Oracle database. Developed and tested using Oracle 12.1.0.2 multitenant architecture. However, it should work with 12.2 and previous versions of database as none of the 12c specific features are used in the script.
 
 The tool is multi-threaded and allows to specify number of write and read threads. Write threads execute a stored procedure generating OLTP style transactions i.e. large volume but small in row size. Read threads execute a pre-defined SQL query. 
 
 The schema itself is very simple and have the following tables
 
-Buyer - list of buyers
-Merchant - list of products and merchants
-Transaction - A buy transaction by a random buyer from Buyer table buying a random product from Merchant table.
+-   Buyer - list of buyers
+-   Merchant - list of products and merchants
+-   Transaction - A buy transaction by a random buyer from Buyer table buying a random product from Merchant table.
 
-The pl/sql stored procedure load_no_comp is called by Writer threads and do the following, 
-    -    read a random buyer info from buyer table 
-    -    read a random product and merchant info from merchant table 
-    -    construct a transaction and  insert into Transaction table 
+The pl/sql stored procedure load_no_comp is called by Writer threads and does the following, 
+-   read a random buyer info from buyer table 
+-   read a random product and merchant info from merchant table 
+-   construct a transaction and  insert into Transaction table 
 
 ## Installation of Database schema and Objects
 
 To install Database schema and objects, connect to a database (or a pluggable database) using a privileged user and execute the setup script to create dbloadgen tablespace and user.
 
-    -    dbloadgen_setup.sql
+-   dbloadgen_setup.sql
 
 Then connect as dbloadgen user and execute the following scripts to create schema objects.
 
-   -    dbloadgen_tables.sql
-    -    buyer_seed_data.sql
-    -    merchant_seed_data.sql
-    -    proc_load_no_comp.sql   
+-   dbloadgen_tables.sql
+-   buyer_seed_data.sql
+-   merchant_seed_data.sql
+-   proc_load_no_comp.sql   
 
 ## Usage 
 dbloadgen.py -h
