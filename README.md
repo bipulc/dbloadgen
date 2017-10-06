@@ -56,7 +56,7 @@ dbloadgen.py -d <DB Service name>  -i <ip address of DB server> -p <listener por
 
 ## Docker Image
 
-Download the docker image from docker hub at https://hub.docker.com/r/bipulc/dbloadgen/
+Download the docker image from [docker hub](https://hub.docker.com/r/bipulc/dbloadgen/)
 
 and execute as 
 
