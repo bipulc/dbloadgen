@@ -29,6 +29,7 @@ Then connect as dbloadgen user and execute the following scripts to create schem
 -   proc_load_no_comp.sql   
 
 ## Usage 
+```
 dbloadgen.py -h
 usage: dbloadgen.py [-h] [-d D] [-i I] [-p P] [-u U] [-s S] [-w W] [-r R]
                     [-l L] [-t T]
@@ -44,11 +45,14 @@ optional arguments:
   -r R        number of read threads
   -l L        logfile (fullpath)
   -t T        elapsed time to run the test in minutes
+```
 
 Example:
 
+```
 dbloadgen.py -d <DB Service name>  -i <ip address of DB server> -p <listener port> -u dbloadgen -s dbloadgen -l /tmp
 /dbloadgen.log -t 5 -w 2 -r 2'
+```
 
 ## Docker Image
 
@@ -56,26 +60,28 @@ Download the docker image from docker hub at https://hub.docker.com/r/bipulc/dbl
 
 and execute as 
 
+```
 docker run --name dbloadgen-01 --rm <image id>  sh -c 'cd /opt/oracle/dbloadgen/bin; /bin/python /op
-t/oracle/dbloadgen/bin/dbloadgen.py -d <DB Service name>  -i <ip address of DB server> -p <listener port> -u dbloadgen -s dbloadgen -l /tmp
-/dbloadgen.log -t 5 -w 2 -r 2'
-
+t/oracle/dbloadgen/bin/dbloadgen.py -d <DB Service name>  -i <ip address of DB server> -p <listener port> -u dbloadgen -s dbloadgen -l /tmp/dbloadgen.log -t 5 -w 2 -r 2'
+```
 Additionally, a dockerfile in the repo can be used to build the image. To build an image from dockerfile, download the following files in same directory as dockerfile.
 
-    -    Oracle Instant Client zip files  for instantclient_12_1 from OTN.
+Oracle Instant Client zip files  for instantclient_12_1 from OTN.
 
-            instantclient-basic-linux.x64-12.1.0.2.0.zip
-            instantclient-sdk-linux.x64-12.1.0.2.0.zip
-            instantclient-sqlplus-linux.x64-12.1.0.2.0.zip
+- instantclient-basic-linux.x64-12.1.0.2.0.zip
+- instantclient-sdk-linux.x64-12.1.0.2.0.zip
+- instantclient-sqlplus-linux.x64-12.1.0.2.0.zip
 
--    Additionally download epel-release-latest-7.noarch.rpm from Fedora EPEL project
--    and entrypoint.sh from this repo.
+Additionally download epel-release-latest-7.noarch.rpm from Fedora EPEL project
+and entrypoint.sh from this repo.
 
-and execute 
+and run the following command in the directory. 
 
+```
 docker build --rm -t dbloadgen .
+```
 
 ## To Do
 
-—> simplify schema installation process
-—> allow Reader threads to pick a SQL Query from a list of queries instead of a fixed single query
+- simplify schema installation process
+- allow Reader threads to pick a SQL Query from a list of queries instead of a fixed single query
