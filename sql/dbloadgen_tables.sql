@@ -49,5 +49,5 @@ CREATE TABLE TRANSACTION_NO_COMP
   qty           NUMBER,
   unit_price          NUMBER
 )
-TABLESPACE NO_ACO_TS;
+TABLESPACE dbloadgen_ts;
 
