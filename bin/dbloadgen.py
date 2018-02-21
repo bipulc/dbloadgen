@@ -20,7 +20,7 @@ parser.add_argument("-r", type=int, default=2, help="number of read threads")
 parser.add_argument("-l", type=str, help="logfile (fullpath)")
 parser.add_argument("-t", type=int, default=1, help="elapsed time to run the test in minutes")
 #parser.add_argument("-a", type=str, default='y', help="take awr snapshot")
-#parser.add_argument("-n", type=str, help="generate network workload", nargs='?')
+parser.add_argument("-n", type=str, default='n', help="generate network workload")
 args = parser.parse_args()
 
 
@@ -33,6 +33,7 @@ numth_write = args.w
 numth_read = args.r
 logfile = args.l
 test_duration = args.t
+network_load = args.n
 
 # Get password
 if args.s:
@@ -65,12 +66,19 @@ preloadstats = helper.Statsretreiver(username,password,database)
 prestats =  preloadstats.getStats()
 
 # Start Writer Threads
-
 writerthreads = []
+
+if network_load == "y":
+    target_proc = helper.runWriterProc_network
+else:
+    target_proc = helper.runWriterProc
+
+# helper.t_log('Target Proc %s' % target_proc)
 
 for i in range(numth_write):
     threadname = 'Thread ' + str(i)
-    tw = threading.Thread(target=helper.runWriterProc, args=(threadname, username, password, database, test_duration))
+    # tw = threading.Thread(target=helper.runWriterProc, args=(threadname, username, password, database, test_duration))
+    tw = threading.Thread(target=target_proc, args=(threadname, username, password, database, test_duration))
     writerthreads.append(tw)
     tw.start()
 
