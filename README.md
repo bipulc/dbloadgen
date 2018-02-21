@@ -32,7 +32,7 @@ Then connect as dbloadgen user and execute the following scripts to create schem
 ```
 dbloadgen.py -h
 usage: dbloadgen.py [-h] [-d D] [-i I] [-p P] [-u U] [-s S] [-w W] [-r R]
-                    [-l L] [-t T]
+                    [-l L] [-t T] [-n N]
 
 optional arguments:
   -h, --help  show this help message and exit
@@ -45,13 +45,14 @@ optional arguments:
   -r R        number of read threads
   -l L        logfile (fullpath)
   -t T        elapsed time to run the test in minutes
+  -n N        generate network workload. Valid value y|n
 ```
 
 Example:
 
 ```
 dbloadgen.py -d <DB Service name>  -i <ip address of DB server> -p <listener port> -u dbloadgen -s dbloadgen -l /tmp
-/dbloadgen.log -t 5 -w 2 -r 2'
+/dbloadgen.log -t 5 -w 2 -r 2 -n y'
 ```
 
 ## Docker Image
@@ -84,4 +85,5 @@ docker build --rm -t dbloadgen .
 ## To Do
 
 - simplify schema installation process
+- Update docker image with new changes
 - allow Reader threads to pick a SQL Query from a list of queries instead of a fixed single query
